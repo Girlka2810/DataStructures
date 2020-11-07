@@ -15,6 +15,16 @@ namespace DataStructures
             _array = new int[0] ;
             Length = 0;
         }
+        public ArrayList(int a)
+        {
+            _array = new int[1] { a };
+            Length = 1;
+        }
+        public ArrayList(int[]a)
+        {
+            _array = a;
+            Length = a.Length;
+        }
         //1
         public void Add(int value)
         {
@@ -85,7 +95,7 @@ namespace DataStructures
             int newLenght = Length-1;
             while (newLenght >= Length)
             {
-                newLenght = (int)(newLenght);
+                newLenght = (int)(newLenght*0.5);
             }
 
             int[] newArray = new int[newLenght];
@@ -304,6 +314,21 @@ namespace DataStructures
                     i--;
                 }
             }
+        }
+        //21
+        public void AddArray(int []a)
+        {
+            while (Length + a.Length > _array.Length)
+            {
+                IncreaseLength();
+            }
+
+            for (int i = 0; i < a.Length; i++)
+            {
+                _array[Length + i] = a[i];
+            }
+
+            Length += a.Length;
         }
         public override bool Equals(object obj)
         {
