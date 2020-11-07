@@ -279,6 +279,32 @@ namespace DataStructures
                 }
             }
         }
+        //18
+        public void RemoveByValueFirst(int value)
+        {
+
+            for (int i = 0; i < Length; i++)
+            {
+                if (_array[i] == value)
+                {
+                    RemoveByIndex(i);
+                    i--;
+                }
+            }
+        }
+        //19
+        public void RemoveByValueAll(int value)
+        {
+
+            for (int i = 0; i < Length; i++)
+            {
+                while (_array[i] == value)
+                {
+                    RemoveByIndex(i);
+                    i--;
+                }
+            }
+        }
         public override bool Equals(object obj)
         {
             ArrayList arrayList = (ArrayList)obj;
