@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Dynamic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace DataStructures
 {
@@ -13,20 +14,6 @@ namespace DataStructures
         {
             _array = new int[0] ;
             Length = 0;
-        }
-        //8
-        public string GetValueByIndex(int index)
-        {
-            {
-                if ((Length > 0) && (index < Length) && (index >= 0))
-                {
-                    return (_array[index] + "");
-                }
-                else
-                {
-                    return "Значение отсутствует";
-                }
-            }
         }
         //1
         public void Add(int value)
@@ -146,6 +133,150 @@ namespace DataStructures
 
                 ReductionLength();
                 Length--;
+            }
+        }
+        //7
+        public int GetLength()
+        {
+            int a = _array.Length;
+            return a;
+        }
+        //8
+        public string GetValueByIndex(int index)
+        {
+            {
+                if ((Length > 0) && (index < Length) && (index >= 0))
+                {
+                    return (_array[index] + "");
+                }
+                else
+                {
+                   throw new Exception("Index doesn't exist");
+                }
+            }
+        }
+        //9
+        public int GetIndexByValue(int value)
+        {
+            bool check = false;
+            int index=0;
+            for (int i = 0; i < _array.Length; i++)
+            {
+                if (_array[i] == value)
+                {
+                    index = i;
+                    check = true;
+                }
+            }
+            if (check == true)
+            {
+                return index;
+            }
+            else
+            {
+                throw new Exception("Value doesn't exist");
+            }
+        }
+        //10
+        public void ChangeByIndex (int index,int value)
+        {
+            if (Length < _array.Length)
+            {
+                IncreaseLength();
+            }
+            for (int i=0;i<_array.Length;i++)
+            {
+                if(index==i)
+                {
+                    _array[i] = value;
+                }
+            }
+        }
+        //11
+        public void Reverse()
+        {
+            for (int i = 0, j = GetLength() - 1; i < j; i++, j--)
+            {
+                int temp = _array[i];
+               _array[i] = _array[j];
+                _array[j] = temp;
+            }
+        }
+        //12
+        public int FindMaxValue()
+        {
+            int max = _array[0];
+            for (int i=0; i<GetLength();i++)
+            {
+                if (max < _array[i])
+                    max = _array[i];
+            }
+            return max;
+        }
+        //13
+        public int FindMinValue()
+        {
+            int min = _array[0];
+            for (int i = 0; i < GetLength(); i++)
+            {
+                if (min > _array[i])
+                    min = _array[i];
+            }
+            return min;
+        }
+        //14
+        public int FindIndexOfMaxValue()
+        {
+            int max = _array[0];
+            int index = 0;
+            for (int i = 0; i < _array.Length; i++)
+            { if (max <= _array[i])
+                {
+                    max = _array[i];
+                    index = i;
+                }
+            }
+            return index;
+        }
+        //15
+        public int FindIndexOfMinValue()
+        {
+            int min = _array[0];
+            int index = 0;
+            for (int i = 0; i < _array.Length; i++)
+            {
+                if (min >= _array[i])
+                {
+                    min = _array[i];
+                    index = i;
+                }
+            }
+            return index;
+        }
+        //16
+        public void InsertionSortAscendingOrder()
+        {
+            for (int i = 1; i < _array.Length; i++)
+            {
+                for (int j = i; j > 0 && _array[j - 1] > _array[j]; j--)
+                {
+                    int temp = _array[j - 1];
+                    _array[j - 1] = _array[j];
+                    _array[j] = temp;
+                }
+            }
+        }
+        //17
+        public void InsertionSortDescendingOrder()
+        {
+            for (int i = 1; i < _array.Length; i++)
+            {
+                for (int j = i; j > 0 && _array[j - 1] < _array[j]; j--)
+                {
+                    int temp = _array[j - 1];
+                    _array[j - 1] = _array[j];
+                    _array[j] = temp;
+                }
             }
         }
         public override bool Equals(object obj)
