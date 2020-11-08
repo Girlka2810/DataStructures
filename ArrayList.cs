@@ -9,10 +9,10 @@ namespace DataStructures
     {
         public int Length { get; private set; }
         private int[] _array;
-       
+
         public ArrayList()
         {
-            _array = new int[0] ;
+            _array = new int[0];
             Length = 0;
         }
         public ArrayList(int a)
@@ -20,7 +20,7 @@ namespace DataStructures
             _array = new int[1] { a };
             Length = 1;
         }
-        public ArrayList(int[]a)
+        public ArrayList(int[] a)
         {
             _array = a;
             Length = a.Length;
@@ -28,13 +28,13 @@ namespace DataStructures
         //1
         public void Add(int value)
         {
-            if (Length<= _array.Length)
+            if (Length <= _array.Length)
             {
                 IncreaseLength();
             }
             _array[Length] = value;
             Length++;
-           
+
         }
         private void IncreaseLength(int number = 1)
         {
@@ -52,11 +52,11 @@ namespace DataStructures
         //2
         public void AddFirst(int value)
         {
-            if(Length<_array.Length)
+            if (Length < _array.Length)
             {
                 IncreaseLength();
             }
-            for (int i = Length; i!=0; i--)
+            for (int i = Length; i != 0; i--)
             {
                 _array[i] = _array[i - 1];
             }
@@ -64,7 +64,7 @@ namespace DataStructures
             Length++;
         }
         //3
-        public void AddByIndex(int index,int value)
+        public void AddByIndex(int index, int value)
         {
             if (index == Length)
             {
@@ -92,19 +92,19 @@ namespace DataStructures
         }
         private void ReductionLength()
         {
-            int newLenght = Length-1;
+            int newLenght = Length - 1;
             while (newLenght >= Length)
             {
-                newLenght = (int)(newLenght*0.5);
+                newLenght = (int)(newLenght * 0.5);
             }
 
             int[] newArray = new int[newLenght];
-            Array.Copy(_array, newArray, Length-1);
+            Array.Copy(_array, newArray, Length - 1);
 
             _array = newArray;
         }
         //4
-        public void Remove ()
+        public void Remove()
         {
             if (Length > 0)
             {
@@ -161,7 +161,7 @@ namespace DataStructures
                 }
                 else
                 {
-                   throw new Exception("Index doesn't exist");
+                    throw new Exception("Index doesn't exist");
                 }
             }
         }
@@ -169,7 +169,7 @@ namespace DataStructures
         public int GetIndexByValue(int value)
         {
             bool check = false;
-            int index=0;
+            int index = 0;
             for (int i = 0; i < _array.Length; i++)
             {
                 if (_array[i] == value)
@@ -188,15 +188,15 @@ namespace DataStructures
             }
         }
         //10
-        public void ChangeByIndex (int index,int value)
+        public void ChangeByIndex(int index, int value)
         {
             if (Length < _array.Length)
             {
                 IncreaseLength();
             }
-            for (int i=0;i<_array.Length;i++)
+            for (int i = 0; i < _array.Length; i++)
             {
-                if(index==i)
+                if (index == i)
                 {
                     _array[i] = value;
                 }
@@ -208,7 +208,7 @@ namespace DataStructures
             for (int i = 0, j = GetLength() - 1; i < j; i++, j--)
             {
                 int temp = _array[i];
-               _array[i] = _array[j];
+                _array[i] = _array[j];
                 _array[j] = temp;
             }
         }
@@ -216,7 +216,7 @@ namespace DataStructures
         public int FindMaxValue()
         {
             int max = _array[0];
-            for (int i=0; i<GetLength();i++)
+            for (int i = 0; i < GetLength(); i++)
             {
                 if (max < _array[i])
                     max = _array[i];
@@ -240,7 +240,8 @@ namespace DataStructures
             int max = _array[0];
             int index = 0;
             for (int i = 0; i < _array.Length; i++)
-            { if (max <= _array[i])
+            {
+                if (max <= _array[i])
                 {
                     max = _array[i];
                     index = i;
@@ -316,7 +317,7 @@ namespace DataStructures
             }
         }
         //21
-        public void AddArray(int []a)
+        public void AddArray(int[] a)
         {
             while (Length + a.Length > _array.Length)
             {
@@ -350,5 +351,13 @@ namespace DataStructures
             }
             return true;
         }
+        public void ShowArrayList()
+        {
+            for (int i = 0; i < _array.Length; i++)
+            {
+                Console.Write(_array[i] + " ");
+            }
 
-    } }
+        }
+    }
+}
