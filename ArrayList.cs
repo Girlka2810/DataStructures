@@ -317,7 +317,7 @@ namespace DataStructures
             }
         }
         //21
-        public void AddArray(int[] a)
+        public void Add(int[] a)
         {
             while (Length + a.Length > _array.Length)
             {
@@ -330,6 +330,27 @@ namespace DataStructures
             }
 
             Length += a.Length;
+        }
+        //22
+        public void AddFirst(int[] a)
+        {
+            while (Length + a.Length > _array.Length)
+            {
+                IncreaseLength();
+            }
+
+            Length += a.Length;
+            int[] newArray = new int[Length];
+            for (int i = 0; i < Length - a.Length; i++)
+            {
+                newArray[i + a.Length] = _array[i];
+            }
+            _array = newArray;
+
+            for (int i = 0; i < a.Length; i++)
+            {
+                _array[i] = a[i];
+            }
         }
         public override bool Equals(object obj)
         {
@@ -359,5 +380,9 @@ namespace DataStructures
             }
 
         }
+        //public override string ToString()
+        //{
+        //    return string.Join(";",_array.Length);
+        //}
     }
 }
