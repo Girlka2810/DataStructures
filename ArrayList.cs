@@ -49,6 +49,21 @@ namespace DataStructures
 
             _array = newArray;
         }
+        //21
+        public void Add(int[] a)
+        {
+            while (Length + a.Length > _array.Length)
+            {
+                IncreaseLength();
+            }
+
+            for (int i = 0; i < a.Length; i++)
+            {
+                _array[Length + i] = a[i];
+            }
+
+            Length += a.Length;
+        }
         //2
         public void AddFirst(int value)
         {
@@ -62,6 +77,27 @@ namespace DataStructures
             }
             _array[0] = value;
             Length++;
+        }
+        //22
+        public void AddFirst(int[] array)
+        {
+            while (Length + array.Length > _array.Length)
+            {
+                IncreaseLength();
+            }
+
+            Length += array.Length;
+            int[] newArray = new int[Length];
+            for (int i = 0; i < Length - array.Length; i++)
+            {
+                newArray[i + array.Length] = _array[i];
+            }
+            _array = newArray;
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                _array[i] = array[i];
+            }
         }
         //3
         public void AddByIndex(int index, int value)
@@ -90,6 +126,29 @@ namespace DataStructures
                 Length++;
             }
         }
+        //23 
+        public void AddByIndex(int index, int[] array)
+        {
+            while (Length + array.Length > _array.Length)
+            {
+                IncreaseLength();
+            }
+            int[] newArray = new int[Length+array.Length];
+            for (int i = 0; i < index; i++)
+            {
+                newArray[i] = _array[i];
+            }
+            for (int i = 0; i < array.Length; i++)
+            {
+                newArray[index + i] = array[i];
+            }
+            for (int i = index + array.Length; i < array.Length + Length; i++)
+            {
+                newArray[i] = _array[i - array.Length];
+            }
+            Length += array.Length;
+            _array = newArray;
+        }
         private void ReductionLength()
         {
             int newLenght = Length - 1;
@@ -112,6 +171,27 @@ namespace DataStructures
                 Length--;
             }
         }
+        //24
+        public void Remove (int quantity)
+        {
+            if (Length <= 0)
+            {
+                throw new Exception("Nothing to remove");
+            }
+            else if (Length > Length - 1)
+            {
+                ReductionLength();
+            }
+            if (quantity <= 0)
+            {
+                throw new Exception("Please enter a positive number");
+            }
+            while (quantity != 0)
+            {
+                Remove();
+                quantity--;
+            }
+        }
         //5
         public void RemoveFirst()
         {
@@ -126,6 +206,27 @@ namespace DataStructures
 
                 ReductionLength();
                 Length--;
+            }
+        }
+        //25 
+        public void RemoveFirst(int quantity)
+        {
+            if (Length <= 0)
+            {
+                throw new Exception("Nothing to remove");
+            }
+            else if (Length > Length - 1)
+            {
+                ReductionLength();
+            }
+            if (quantity <= 0)
+            {
+                throw new Exception("Please enter a positive number");
+            }
+            while (quantity != 0)
+            {
+                RemoveFirst();
+                quantity--;
             }
         }
         //6
@@ -143,6 +244,27 @@ namespace DataStructures
 
                 ReductionLength();
                 Length--;
+            }
+        }
+        //26
+        public void RemoveByIndex(int quantity,int index)
+        {
+            if (Length <= 0)
+            {
+                throw new Exception("Nothing to remove");
+            }
+            else if (Length > Length - 1)
+            {
+                ReductionLength();
+            }
+            if (quantity <= 0)
+            {
+                throw new Exception("Please enter a positive number");
+            }
+            while (quantity != 0)
+            {
+                RemoveByIndex(index);
+                quantity--;
             }
         }
         //7
@@ -316,42 +438,7 @@ namespace DataStructures
                 }
             }
         }
-        //21
-        public void Add(int[] a)
-        {
-            while (Length + a.Length > _array.Length)
-            {
-                IncreaseLength();
-            }
-
-            for (int i = 0; i < a.Length; i++)
-            {
-                _array[Length + i] = a[i];
-            }
-
-            Length += a.Length;
-        }
-        //22
-        public void AddFirst(int[] a)
-        {
-            while (Length + a.Length > _array.Length)
-            {
-                IncreaseLength();
-            }
-
-            Length += a.Length;
-            int[] newArray = new int[Length];
-            for (int i = 0; i < Length - a.Length; i++)
-            {
-                newArray[i + a.Length] = _array[i];
-            }
-            _array = newArray;
-
-            for (int i = 0; i < a.Length; i++)
-            {
-                _array[i] = a[i];
-            }
-        }
+       
         public override bool Equals(object obj)
         {
             ArrayList arrayList = (ArrayList)obj;
