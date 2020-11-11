@@ -12,7 +12,7 @@ namespace DataStructures
 
         public ArrayList()
         {
-            _array = new int[0];
+            _array = new int[1];
             Length = 0;
         }
         public ArrayList(int a)
@@ -71,11 +71,13 @@ namespace DataStructures
             {
                 IncreaseLength();
             }
-            for (int i = Length; i != 0; i--)
-            {
-                _array[i] = _array[i - 1];
+            int[] tempArray = new int [_array.Length+1];
+            for (int i = 0; i <_array.Length; i++)
+            { 
+                tempArray[i+1] = _array[i];
             }
-            _array[0] = value;
+            tempArray[0] = value;
+            _array = tempArray;
             Length++;
         }
         //22
