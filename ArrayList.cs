@@ -52,12 +52,12 @@ namespace DataStructures
         //21
         public void Add(int[] a)
         {
-          //whike 
-            if (Length + a.Length > _array.Length)
-            {
-                IncreaseLength();
-            }
-
+            
+                if (Length + a.Length > _array.Length)
+                {
+                    IncreaseLength();
+                }
+            
             for (int i = 0; i < a.Length; i++)
             {
                 _array[Length + i] = a[i];
