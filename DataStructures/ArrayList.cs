@@ -39,13 +39,13 @@ namespace DataStructures
         private void IncreaseLength(int number = 1)
         {
             int newLenght = _array.Length;
-            while (newLenght <= Length + number)
+            while (newLenght <= _array.Length + number)
             {
                 newLenght = (int)(newLenght * 1.33 + 1);
             }
 
             int[] newArray = new int[newLenght];
-            Array.Copy(_array, newArray, Length);
+            Array.Copy(_array, newArray, _array.Length);
 
             _array = newArray;
         }
@@ -154,7 +154,7 @@ namespace DataStructures
         }
         private void ReductionLength()
         {
-            int newLenght = Length - 1;
+            int newLenght = _array.Length - 1;
             while (newLenght >= Length)
             {
                 newLenght = (int)(newLenght * 0.5);
@@ -181,11 +181,7 @@ namespace DataStructures
             {
                 throw new Exception("Nothing to remove");
             }
-            else if (Length > Length - 1)
-            {
-                ReductionLength();
-            }
-            if (quantity <= 0)
+                        if (quantity <= 0)
             {
                 throw new Exception("Please enter a positive number");
             }
@@ -198,10 +194,10 @@ namespace DataStructures
         //5
         public void RemoveFirst()
         {
-            if (Length > 0)
+            if (_array.Length > 0)
             {
-                int[] newArray = new int[Length];
-                for (int i = 0; i < Length - 1; i++)
+                int[] newArray = new int[_array.Length];
+                for (int i = 0; i < _array.Length - 1; i++)
                 {
                     newArray[i] = _array[i + 1];
                 }
@@ -218,7 +214,7 @@ namespace DataStructures
             {
                 throw new Exception("Nothing to remove");
             }
-            else if (Length > Length - 1)
+            else if (_array.Length - 1 > Length)
             {
                 ReductionLength();
             }
@@ -231,17 +227,29 @@ namespace DataStructures
                 RemoveFirst();
                 quantity--;
             }
+           
         }
         //6
         public void RemoveByIndex(int index)
         {
+                if (Length <= 0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
             if ((Length > 0) && (index < Length) && (index >= 0))
             {
                 int[] newArray = new int[Length];
                 newArray = _array;
                 for (int i = index; i < Length - 1; i++)
                 {
-                    newArray[i] = _array[i + 1];
+                    if (i == 0)
+                    {
+                        RemoveFirst();
+                    }
+                    else
+                    {
+                        newArray[i] = _array[i + 1];
+                    }
                 }
                 _array = newArray;
 
@@ -250,16 +258,16 @@ namespace DataStructures
             }
         }
         //26
-        public void RemoveByIndex(int quantity,int index)
+        public void RemoveByIndex(int index, int quantity)
         {
             if (Length <= 0)
             {
                 throw new Exception("Nothing to remove");
             }
-            else if (Length > Length - 1)
-            {
-                ReductionLength();
-            }
+            //else if (Length > Length - 1)
+            //{
+            //    ReductionLength();
+            //}
             if (quantity <= 0)
             {
                 throw new Exception("Please enter a positive number");

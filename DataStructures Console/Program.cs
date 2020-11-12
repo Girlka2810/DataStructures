@@ -67,9 +67,15 @@ namespace DataStructures_Console
             DataStructures.ArrayList myList1 = new DataStructures.ArrayList(new int[3] { 0,2,3 });
             //myList1.AddFirst(new int[3] { 1, 2, 3 });
             myList1.Add(new int[12] { 3, 2, 1,23,235,45,48,78,9,5,62,3 });
-            //myList1.AddByIndex(2, new int[3] { 999, 898, 989 });
-            myList1.ToString();
             myList1.ShowArrayList();
+            Console.WriteLine();
+            Console.WriteLine("length: "+myList1.Length);
+            //myList1.AddByIndex(2, new int[3] { 999, 898, 989 });
+            myList1.RemoveFirst(5);
+            myList1.ShowArrayList();
+            Console.WriteLine();
+            Console.WriteLine("length: " + myList1.Length);
+
             Console.WriteLine("Check");
         }
 
