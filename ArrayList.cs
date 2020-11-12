@@ -52,7 +52,8 @@ namespace DataStructures
         //21
         public void Add(int[] a)
         {
-            while (Length + a.Length > _array.Length)
+          //whike 
+            if (Length + a.Length > _array.Length)
             {
                 IncreaseLength();
             }
@@ -463,6 +464,16 @@ namespace DataStructures
         }
         public void ShowArrayList()
         {
+            for (int i = 0; i < _array.Length; i++)
+            {
+                Console.Write(_array[i] + " ");
+            }
+
+        }
+        public void ShowArrayList(int []a)
+        {
+            a = _array;
+            _array = a;
             for (int i = 0; i < _array.Length; i++)
             {
                 Console.Write(_array[i] + " ");
