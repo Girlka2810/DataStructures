@@ -451,26 +451,17 @@ namespace DataStructures
         public void RemoveByValueAll(int value)
         {
 
-            int valueCount = 0;
             for (int i = 0; i < Length; i++)
             {
-                if (_array[i] == value)
+                while (_array[i] == value)
                 {
-                    valueCount++;
+                    RemoveByIndex(i);
+                    i--;
                 }
-            }
-            while (valueCount != 0)
-            {
-                for (int i = 0; i < Length; i++)
-                {
-                    if (_array[i] == value)
-                    {
-                        RemoveByIndex(i);
-                        valueCount--;
-                    }
-                }
+
             }
         }
+       
         public override bool Equals(object obj)
         {
             ArrayList arrayList = (ArrayList)obj;
