@@ -194,3 +194,8 @@ C:\Users\79214\Source\Repos1\DataStructures\DataStructures Tests\obj\Debug\netco
 C:\Users\79214\Source\Repos1\DataStructures\DataStructures Tests\obj\Debug\netcoreapp3.1\DataStructures Tests.dll
 C:\Users\79214\Source\Repos1\DataStructures\DataStructures Tests\obj\Debug\netcoreapp3.1\DataStructures Tests.pdb
 C:\Users\79214\Source\Repos1\DataStructures\DataStructures Tests\obj\Debug\netcoreapp3.1\DataStructures Tests.genruntimeconfig.cache
+C:\Users\79214\Source\Repos1\DataStructures\DataStructures Tests\bin\Debug\netcoreapp3.1\Microsoft.Data.Tools.Schema.Sql.dll
+C:\Users\79214\Source\Repos1\DataStructures\DataStructures Tests\bin\Debug\netcoreapp3.1\Microsoft.Data.Tools.Schema.Sql.UnitTesting.dll
+C:\Users\79214\Source\Repos1\DataStructures\DataStructures Tests\bin\Debug\netcoreapp3.1\Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter.dll
+C:\Users\79214\Source\Repos1\DataStructures\DataStructures Tests\bin\Debug\netcoreapp3.1\Microsoft.Data.Tools.Utilities.dll
+C:\Users\79214\Source\Repos1\DataStructures\DataStructures Tests\bin\Debug\netcoreapp3.1\Microsoft.SqlServer.TransactSql.ScriptDom.dll
