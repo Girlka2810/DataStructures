@@ -9,7 +9,6 @@ namespace DataStructures.LinkedList
     {
         public int Length { get; private set; }
         private Node _root;
-
         public LinkedList()
         {
             Length = 0;
@@ -34,7 +33,6 @@ namespace DataStructures.LinkedList
                 _root = null;
             }
         }
-
         public int this[int index]
         {
             get
@@ -57,7 +55,6 @@ namespace DataStructures.LinkedList
                 tmp.Value = value;
             }
         }
-
         public void Add(int value)
         {
             if (Length == 0)
@@ -114,7 +111,6 @@ namespace DataStructures.LinkedList
                 i--;
             }
         }
-
         public void AddByIndex(int index, int value)
         {
             if (index < 0 || index > Length)
@@ -382,6 +378,157 @@ namespace DataStructures.LinkedList
             else
             {
                 throw new IndexOutOfRangeException();
+            }
+        }
+        public void Revers ()
+        {
+            if (Length<=0)
+            {
+                throw new ArgumentNullException();
+            }
+            Node current = _root;
+            Node prev = null;
+            Node next;
+            while (current.Next != null)
+            {
+                next = current.Next;
+                current.Next = prev;
+                prev = current;
+                current = next;
+            }
+            current.Next = prev;
+            _root = current;
+        }
+        public int FindMax()
+        {
+            Node tmp = _root;
+            int b = tmp.Value;
+            for (int i = 0; i < Length; i++)
+            {
+                if (tmp.Value > b)
+                { 
+                    b = tmp.Value;
+                }
+                tmp = tmp.Next;
+            }
+            return b;
+        }
+        public int FindMin()
+        {
+            Node tmp = _root;
+            int b = tmp.Value;
+            for (int i = 0; i < Length; i++)
+            {
+                if (tmp.Value < b)
+                { 
+                    b = tmp.Value;
+                }
+                tmp = tmp.Next;
+            }
+            return b;
+        }
+        public int FindIndexOfMax()
+        {
+            Node tmp = _root;
+            int b = tmp.Value;
+            int index=0;
+
+            for (int i = 0; i < Length; i++)
+            {
+                if (tmp.Value > b) 
+                { 
+                    b = tmp.Value;
+                    index = i;
+                }
+                tmp = tmp.Next;
+            }
+            return index;
+        }
+        public int FindIndexOfMin()
+        {
+            Node tmp = _root;
+            int b = tmp.Value;
+            int index = 0;
+
+            for (int i = 0; i < Length; i++)
+            {
+                if (tmp.Value < b)
+                {
+                    b = tmp.Value;
+                    index = i;
+                }
+                tmp = tmp.Next;
+            }
+            return index;
+        }
+        public void SortInAscendingOrder()
+        {
+            for (int i = 0; i < Length; i++)
+            {
+                Node current = _root;
+                for (int j = 1; j < Length - i; j++)
+                {
+                    if (current.Value > current.Next.Value)
+                    {
+                        int tmp = current.Next.Value;
+                        current.Next.Value = current.Value;
+                        current.Value = tmp;
+                    }
+                    current = current.Next;
+                }
+            }
+        }
+        public void SortInDescendingOrder()
+        {
+            for (int i = 0; i < Length; i++)
+            {
+                Node current = _root;
+                for (int j = 1; j < Length - i; j++)
+                {
+                    if (current.Value <current.Next.Value)
+                    {
+                        int tmp = current.Next.Value;
+                        current.Next.Value = current.Value;
+                        current.Value = tmp;
+                    }
+                    current = current.Next;
+                }
+            }
+        }
+        public void RemoveFirstValue(int value)
+        {
+            if (Length != 0)
+            {
+                Node tmp = _root;
+                while (tmp.Next.Value != value && tmp.Next != null)
+                {
+                    tmp = tmp.Next;
+                }
+                tmp.Next = tmp.Next.Next;
+                Length--;
+            }
+        }
+        public void RemoveAllValue(int value)
+        {
+            Node previous = null;
+            Node current = _root;
+            while (current != null)
+            {
+                if (current.Value == value && previous == null)
+                {
+                    _root = current.Next;
+                    Length--;
+                }
+                else if (current.Value == value)
+                {
+                    previous.Next = current.Next;
+                    Length--;
+                }
+                else
+                {
+                    previous = current;
+                }
+                current = current.Next;
             }
         }
         public override bool Equals(object obj)
