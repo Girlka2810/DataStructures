@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace IList
+namespace DataStructures
 {
-    public interface Ilist
+    public interface IList
     {
         void Add(int value);
         void Add(int[] a);

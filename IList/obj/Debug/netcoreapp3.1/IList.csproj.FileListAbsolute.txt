@@ -1,0 +1,9 @@
+C:\Users\79214\Source\Repos1\DataStructures\IList\bin\Debug\netcoreapp3.1\IList.deps.json
+C:\Users\79214\Source\Repos1\DataStructures\IList\bin\Debug\netcoreapp3.1\IList.dll
+C:\Users\79214\Source\Repos1\DataStructures\IList\bin\Debug\netcoreapp3.1\IList.pdb
+C:\Users\79214\Source\Repos1\DataStructures\IList\obj\Debug\netcoreapp3.1\IList.csprojAssemblyReference.cache
+C:\Users\79214\Source\Repos1\DataStructures\IList\obj\Debug\netcoreapp3.1\IList.AssemblyInfoInputs.cache
+C:\Users\79214\Source\Repos1\DataStructures\IList\obj\Debug\netcoreapp3.1\IList.AssemblyInfo.cs
+C:\Users\79214\Source\Repos1\DataStructures\IList\obj\Debug\netcoreapp3.1\IList.csproj.CoreCompileInputs.cache
+C:\Users\79214\Source\Repos1\DataStructures\IList\obj\Debug\netcoreapp3.1\IList.dll
+C:\Users\79214\Source\Repos1\DataStructures\IList\obj\Debug\netcoreapp3.1\IList.pdb
