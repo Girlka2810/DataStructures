@@ -119,52 +119,42 @@ namespace DataStructures
         //3
         public void AddByIndex(int index, int value)
         {
-            if (index == Length)
+            if (index < 0)
+                throw new IndexOutOfRangeException("Index can't be negative");
+            if (index > Length)
+                throw new IndexOutOfRangeException("List doesn't contain an element with this index");
+            while (Length >= _array.Length)
             {
-                Add(value);
+                IncreaseLength();
             }
-            else if ((Length > 0) && (index < Length) && (index >= 0))
+            for (int i = Length - 1; i >= index; i--)
             {
-                if (Length < _array.Length)
-                {
-                    IncreaseLength();
-                }
-                int[] newArray = new int[Length + 1];
-                for (int i = 0; i < Length; i++)
-                {
-                    newArray[i] = _array[i];
-                }
-                for (int i = index; i < Length; i++)
-                {
-                    newArray[i + 1] = _array[i];
-                }
-                newArray[index] = value;
-                _array = newArray;
-                Length++;
+                _array[i + 1] = _array[i];
             }
+            _array[index] = value;
+            Length++;
         }
         //23 
         public void AddByIndex(int index, int[] array)
         {
-            while (Length + array.Length > _array.Length)
+            int arrayLength = array.Length;
+            if (index < 0)
+                throw new IndexOutOfRangeException("Index can not be negative");
+            if (index > Length)
+                throw new IndexOutOfRangeException("List does not contain an element with this index");
+            while (Length >= _array.Length || Length + arrayLength > _array.Length)
             {
-                IncreaseLength();
+                IncreaseLength(arrayLength);
             }
-            int[] newArray = new int[Length+array.Length];
-            for (int i = 0; i < index; i++)
+            for (int i = Length - 1; i >= index; i--)
             {
-                newArray[i] = _array[i];
+                _array[i + arrayLength] = _array[i];
             }
-            for (int i = 0; i < array.Length; i++)
+            for (int i = 0; i < arrayLength; i++)
             {
-                newArray[index + i] = array[i];
+                _array[i + index] = array[i];
             }
-            for (int i = index + array.Length; i < array.Length + Length; i++)
-            {
-                newArray[i] = _array[i - array.Length];
-            }
-            Length += array.Length;
-            _array = newArray;
+            Length += arrayLength;
         }
         //4
         public void Remove()

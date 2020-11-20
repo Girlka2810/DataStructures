@@ -67,7 +67,23 @@ namespace LinkedListTests
 
             Assert.AreEqual(expected, actual);
         }
+        [TestCase(new int[] { 1,2,3,5,4,6,8 }, -1)]
+        [TestCase(new int[] { 1, 2, 3, 5, 4, 6, 8 }, 7)]
 
+        public void GetByIndexTestNegative(int[] array, int index)
+        {
+            try { 
+            LinkedList linkedList = new LinkedList(array);
+                int actual = linkedList[index] ;
+                int expected = array[index];
+                Assert.AreEqual(actual, expected);
+            }
+            catch
+            { 
+                Assert.Pass();
+            }
+            Assert.Fail();
+        }
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, 0, int.MaxValue, new int[] { int.MaxValue, 2, 3, 4, 5 })]
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, 2, 10, new int[] { 1, 2, 10, 4, 5 })]
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, 4, -9, new int[] { 1, 2, 3, 4, -9 })]
@@ -82,7 +98,23 @@ namespace LinkedListTests
             Assert.AreEqual(expected, actual);
 
         }
+        [TestCase(new int[] { 1,2,3,4 }, -1,0)]
 
+        public void SetByIndexNegative(int[] array, int index, int value)
+        {
+                LinkedList linkedList = new LinkedList(array);
+                int actual = linkedList[index];
+                int expected = value;
+            try
+            {
+                Assert.AreEqual(actual, expected);
+            }
+            catch
+            {
+                Assert.Pass();
+            }
+            Assert.Fail();
+        }
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, 0, int.MaxValue, new int[] { int.MaxValue, 1, 2, 3, 4, 5 })]
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, 2, 10, new int[] { 1, 2, 10, 3, 4, 5 })]
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, 4, -9, new int[] { 1, 2, 3, 4, -9, 5 })]
@@ -229,7 +261,18 @@ namespace LinkedListTests
             actual.ChangeByIndex(index, value);
             Assert.AreEqual(expected, actual);
         }
+        [TestCase(new int[] { },  -1,10)]
 
+        public void ChangeValueByIndexNegative(int[] array,  int index, int value)
+        {
+            LinkedList actual = new LinkedList(array);
+            try
+            {
+                actual.ChangeByIndex(index, value);
+            }
+            catch { Assert.Pass(); }
+            Assert.Fail();
+        }
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, 0, 1)]
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, 2, 3)]
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, 4, 5)]

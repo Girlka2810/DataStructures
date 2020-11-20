@@ -264,6 +264,123 @@ namespace DataStructures.DoubleLinkedList
                 }
             }
         }
+        public void Remove()  
+        {
+            if (Length==0)
+            {
+                throw new Exception("Nothing to remove");
+            }
+            if (Length != 0)
+            {
+                if (Length != 1)
+                {
+                    end.Previous.Next = null;
+                    end = end.Previous;
+                    Length--;
+                }
+                else
+                {
+                    _root = null;
+                    end = null;
+                    Length--;
+                }
+            }
+        }
+        public void Remove(int quantity)  
+        {
+            if (Length == 0)
+            {
+                throw new Exception("Nothing to remove");
+            }
+            if (quantity>Length)
+            {
+                throw new Exception("Not enough items to remove");
+            }
+            if (Length != 0)
+            {
+                if (quantity < Length)
+                {
+                    for (int i = 0; i < quantity; i++)
+                    {
+                        end.Previous.Next = null;
+                        end = end.Previous;
+                    }
+                    Length -= quantity;
+                }
+                else
+                {
+                    _root = null;
+                    end = null;
+                    Length = 0;
+                }
+            }
+        }
+        public void RemoveFirst() 
+        {
+            if (Length != 0)
+            {
+                _root = _root.Next;
+                Length--;
+            }
+            else
+            {
+                throw new Exception("Nothing to remove");
+            }
+        }
+
+        public void RemoveFirst(int quantity)  
+        {
+            if (Length==0)
+            {
+                throw new Exception("Not enough items to remove ");
+            }
+            if (quantity>Length)
+            {
+                throw new Exception("Nothing to remove");
+            }
+            if (Length != 0)
+            {
+                if (Length <= quantity)
+                {
+                    _root = null;
+                    Length = 0;
+                }
+                else
+                {
+                    if (quantity != 0)
+                    {
+                        L2Node tmp = _root;
+                        for (int i = 0; i < quantity - 1; i++)
+                        {
+                            tmp = tmp.Next;
+                        }
+                        _root = tmp.Next;
+                        Length -= quantity;
+                    }
+                }
+            }
+        }
+        public int[] ReturnArray()  
+        {
+            int[] array = new int[Length];
+            if (Length != 0)
+            {
+                int i = 0;
+                L2Node tmp = _root;
+                do
+                {
+                    array[i] = tmp.Value;
+                    i++;
+                    tmp = tmp.Next;
+                }
+                while (tmp != null);
+            }
+            return array;
+        }
+        public int ReturnLength  
+        {
+            get { return Length; }
+        }
         public override bool Equals(object obj)
         {
             DoubleLinkedList doubleLinkedList = (DoubleLinkedList)obj;

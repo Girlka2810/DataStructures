@@ -391,6 +391,7 @@ namespace DataStructures.LinkedList
             Node next;
             while (current.Next != null)
             {
+               
                 next = current.Next;
                 current.Next = prev;
                 prev = current;
