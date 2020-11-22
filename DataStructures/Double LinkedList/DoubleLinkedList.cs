@@ -507,6 +507,26 @@ namespace DataStructures.DoubleLinkedList
             }
             return -1;
         }
+        public int GetValueByIndex(int index)
+        {
+            int value = 0;
+            if (Length == 0)
+            {
+                throw new Exception("List is empty");
+            }
+
+                L2Node tmp = _root;
+            for (int i = 0; i < Length; i++)
+            {
+                if (i == index)
+                {
+                    value = tmp.Value;
+                    return value;
+                }
+                tmp = tmp.Next;
+            }
+            return -1;
+        }
         public int[] ReturnArray()
         {
             int[] array = new int[Length];

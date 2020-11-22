@@ -283,5 +283,36 @@ namespace DoubleLinkedListTests
                 }
                 Assert.Fail();
             }
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 1, 2)]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 3, 4)]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 5, 6)]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 4, 5)]
+        [TestCase(new int[] { -1, -2, -3, -4, -5 }, 0, -1)]
+        [TestCase(new int[] { 1 }, 0, 1)]
+        public void GetValueByIndexTest(int[] array, int index, int expected)
+        {
+
+            DoubleLinkedList doubleLinkedList = new DoubleLinkedList(array);
+            int actual = doubleLinkedList.GetValueByIndex(index);
+
+            Assert.AreEqual(expected, actual);
         }
+        [TestCase(new int[] { }, 0, 0)]
+        [TestCase(new int[] { }, 0, -1)]
+        [TestCase(new int[] { }, 0, 5)]
+
+        public void GetValueByIndexTestNegative(int[] array, int index, int expected)
+        {
+            DoubleLinkedList doubleLinkedList = new DoubleLinkedList(array);
+            try
+            {
+                doubleLinkedList.GetValueByIndex(index);
+            }
+            catch
+            {
+                Assert.Pass();
+            }
+            Assert.Fail();
+        }
+    }
     }
