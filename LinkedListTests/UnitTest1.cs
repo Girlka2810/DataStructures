@@ -149,6 +149,7 @@ namespace LinkedListTests
         [TestCase(new int[] { 4}, new int[] {  })]
         [TestCase(new int[] { 1, int.MaxValue, int.MinValue, 3 }, new int[] { 1, int.MaxValue, int.MinValue })]
         [TestCase(new int[] { 1, 2, 3,4,5,6,7,8,9,10,11,12,13,14,15,16,17 }, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 })]
+        [TestCase(new int[] { 1}, new int[] { })]
 
         public void RemoveTests(int[] array, int[] expectedArray)
         {

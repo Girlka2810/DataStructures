@@ -327,7 +327,6 @@ namespace DataStructures.DoubleLinkedList
                 throw new Exception("Nothing to remove");
             }
         }
-
         public void RemoveFirst(int quantity)  
         {
             if (Length==0)
@@ -360,7 +359,155 @@ namespace DataStructures.DoubleLinkedList
                 }
             }
         }
-        public int[] ReturnArray()  
+        public void RemoveByIndex(int index)  
+        {
+            if (Length != 0 && index >= 0 && Length > index)
+            {
+                if (index == 0)
+                {
+                    RemoveFirst();
+                }
+                else if (index == Length - 1)
+                {
+                    Remove();
+                }
+                else
+                {
+                    if (index <= Length / 2)
+                    {
+                        L2Node tmp = _root;
+                        for (int i = 1; i < index; i++)
+                        {
+                            tmp = tmp.Next;
+                        }
+                        tmp.Next = tmp.Next.Next;
+                        tmp.Next.Previous = tmp;
+                        Length--;
+                    }
+                    else
+                    {
+                        L2Node tmp = end;
+                        for (int i = Length - 1; i > index; i--)
+                        {
+                            tmp = tmp.Previous;
+                        }
+                        tmp.Previous = tmp.Previous.Previous;
+                        tmp.Previous.Next = tmp;
+                        Length--;
+                    }
+                }
+            }
+            else if (Length == 0)
+            {
+                throw new Exception("Nothing to remove");
+            }
+            else
+            {
+                throw new IndexOutOfRangeException();
+            }
+        }
+        public void RemoveByIndex(int index, int quantity)  
+        {
+            if (Length != 0 && Length > index && index >= 0 && quantity >= 0)
+            {
+                if (index == 0)
+                {
+                    RemoveFirst(quantity);
+                }
+                else
+                {
+                    if (quantity <= Length / 2)
+                    {
+                        L2Node tmp = _root;
+                        for (int i = 1; i < index; i++)
+                        {
+                            tmp = tmp.Next;
+                        }
+                        if (Length > index + quantity)
+                        {
+                            L2Node b = tmp.Next;
+                            for (int i = 1; i < quantity; i++)
+                            {
+                                b = b.Next;
+                            }
+                            tmp.Next = b.Next;
+                            tmp.Next.Previous = tmp;
+                            Length -= quantity;
+                        }
+                        else
+                        {
+                            tmp.Next = null;
+                            end = tmp;
+                            Length = index;
+                        }
+                    }
+                    else
+                    {
+                        if (Length > index + quantity)
+                        {
+                            L2Node tmp = end;
+                            for (int i = Length - 1; i > index + quantity; i--)
+                            {
+                                tmp = tmp.Previous;
+                            }
+                            L2Node b = tmp.Previous;
+                            for (int i = 1; i < quantity; i++)
+                            {
+                                b = b.Previous;
+                            }
+                            tmp.Previous = b.Previous;
+                            tmp.Previous.Next = tmp;
+                            Length -= quantity;
+                        }
+                        else
+                        {
+                            L2Node tmp = end;
+                            for (int i = Length; i > index; i--)
+                            {
+                                tmp = tmp.Previous;
+                            }
+                            tmp.Next = null;
+                            end = tmp;
+                            Length = index;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (Length == 0)
+                {
+                    throw new Exception("Nothing to remove");
+                }
+                if (quantity<=0)
+                {
+                    throw new Exception("Quantity should be more than zero");
+                }
+                else
+                {
+                    throw new IndexOutOfRangeException();
+                }
+            }
+        }
+        public int GetIndexByValue(int value)
+        {
+            L2Node tmp = _root;
+            if (Length == 0)
+            {
+                throw new Exception("List is empty");
+            }
+            
+            for (int i = 0; i < Length; i++)
+            {
+                if (tmp.Value == value)
+                { 
+                    return i;
+                }
+                tmp = tmp.Next;
+            }
+            return -1;
+        }
+        public int[] ReturnArray()
         {
             int[] array = new int[Length];
             if (Length != 0)
@@ -381,6 +528,7 @@ namespace DataStructures.DoubleLinkedList
         {
             get { return Length; }
         }
+
         public override bool Equals(object obj)
         {
             DoubleLinkedList doubleLinkedList = (DoubleLinkedList)obj;

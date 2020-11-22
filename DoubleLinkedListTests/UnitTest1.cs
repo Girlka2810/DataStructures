@@ -194,5 +194,94 @@ namespace DoubleLinkedListTests
             Assert.Fail();
 
         }
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] { 2, 3, 4, 5 },0)]
+        [TestCase(new int[] { -1, -2, -3, -4, -5 }, new int[] { -1,-2, -3, -4 },4)]
+        [TestCase(new int[] { 1 }, new int[] { },0)]
+        public void RemoveByIndexTests(int[] array, int[] expArray, int index)
+        {
+            DoubleLinkedList expected = new DoubleLinkedList(expArray);
+            DoubleLinkedList actual = new DoubleLinkedList(array);
+            actual.RemoveByIndex(index);
+
+            Assert.AreEqual(expected, actual);
+
+        }
+        [TestCase(new int[] { }, new int[] { },0)]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] {1, 2, 3, 4, 5 }, 5)]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] { 1,2, 3, 4, 5 }, -5)]
+
+        public void RemoveByIndexNegative(int[] array, int[] expArray, int index)
+        {
+            DoubleLinkedList actual = new DoubleLinkedList(array);
+            try
+            {
+                actual.RemoveByIndex(index);
+            }
+            catch
+            {
+                Assert.Pass();
+            }
+            Assert.Fail();
+
+        }
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] {  4, 5 }, 0,3)]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] {  }, 0,5)]
+        [TestCase(new int[] { -1, -2, -3, -4, -5 }, new int[] { -1, -2, -3, -4 }, 4,1)]
+        [TestCase(new int[] { -1, -2, -3, -4, -5 }, new int[] { -1, -2 }, 2, 3)]
+        [TestCase(new int[] { 1 }, new int[] { }, 0,1)]
+        public void RemoveByIndexTests(int[] array, int[] expArray, int index, int quantity)
+        {
+            DoubleLinkedList expected = new DoubleLinkedList(expArray);
+            DoubleLinkedList actual = new DoubleLinkedList(array);
+            actual.RemoveByIndex(index,quantity);
+
+            Assert.AreEqual(expected, actual);
+
+        }
+        [TestCase(new int[] { }, new int[] { }, 0, 1)]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] { 2, 3, 4, 5 }, 5, 1)]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] { 2, 3, 4, 5 }, -5, 1)]
+
+        public void RemoveByIndexNegative(int[] array, int[] expArray, int index, int quantity)
+        {
+            DoubleLinkedList actual = new DoubleLinkedList(array);
+            try
+            {
+                actual.RemoveByIndex(index, quantity);
+            }
+            catch
+            {
+                Assert.Pass();
+            }
+            Assert.Fail();
+        }
+            [TestCase(new int[] { 1, 2, 3, 4, 5 }, 1, 0)]
+            [TestCase(new int[] { 1, 2, 3, 4, 5 }, 3, 2)]
+            [TestCase(new int[] { 1, 2, 3, 4, 5,6 }, 5, 4)]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 5, 4)]
+        [TestCase(new int[] { -1, -2, -3, -4, -5 }, -1, 0)]
+            [TestCase(new int[] { 1 }, 1, 0)]
+            public void GetIndexByValueTest(int[] array, int value, int expected)
+            {
+
+                DoubleLinkedList doubleLinkedList = new DoubleLinkedList(array);
+                int actual = doubleLinkedList.GetIndexByValue(value);
+
+                Assert.AreEqual(expected, actual);
+            }
+            [TestCase(new int[] { }, 0, 0)]
+            public void GetIndexByValueTestNegative(int[] array, int value, int expected)
+            {
+            DoubleLinkedList doubleLinkedList = new DoubleLinkedList(array);
+            try
+            {
+                    doubleLinkedList.GetIndexByValue(value);
+                }
+                catch
+                {
+                    Assert.Pass();
+                }
+                Assert.Fail();
+            }
+        }
     }
-}
