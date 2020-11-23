@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DataStructures.DoubleLinkedList
 {
-    public class DoubleLinkedList: DataStructures.IList
+    public class DoubleLinkedList : DataStructures.IList
     {
         private L2Node _root;
         private L2Node end;
@@ -45,23 +45,23 @@ namespace DataStructures.DoubleLinkedList
                 Length = 0;
             }
         }
-        public void Add(int value) 
+        public void Add(int value)
         {
-                if (Length == 0)
-                {
-                    _root = new L2Node(value);
-                    end = _root;
-                    Length = 1;
-                }
-                else
-                {
-                    end.Next = new L2Node(value);
-                    end.Next.Previous = end;
-                    end = end.Next;
-                    Length++;
-                }
+            if (Length == 0)
+            {
+                _root = new L2Node(value);
+                end = _root;
+                Length = 1;
+            }
+            else
+            {
+                end.Next = new L2Node(value);
+                end.Next.Previous = end;
+                end = end.Next;
+                Length++;
+            }
         }
-        public void Add(int[] array) 
+        public void Add(int[] array)
         {
             if (Length == 0)
             {
@@ -107,7 +107,7 @@ namespace DataStructures.DoubleLinkedList
                 end = _root;
                 Length = 1;
             }
-            else 
+            else
             {
                 _root.Previous = new L2Node(value);
                 _root.Previous.Next = _root;
@@ -115,7 +115,7 @@ namespace DataStructures.DoubleLinkedList
                 Length++;
             }
         }
-        public void AddFirst(int [] array)
+        public void AddFirst(int[] array)
         {
             if (Length == 0)
             {
@@ -158,7 +158,7 @@ namespace DataStructures.DoubleLinkedList
                 }
             }
         }
-        public void AddByIndex (int index, int value)
+        public void AddByIndex(int index, int value)
         {
             if (index >= 0)
             {
@@ -208,7 +208,7 @@ namespace DataStructures.DoubleLinkedList
                 }
             }
         }
-        public void AddByIndex(int index, int [] addArray)
+        public void AddByIndex(int index, int[] addArray)
         {
             if (index >= 0)
             {
@@ -224,49 +224,49 @@ namespace DataStructures.DoubleLinkedList
                     }
                     else
                     {
-                            if (index <= Length / 2)
+                        if (index <= Length / 2)
+                        {
+                            L2Node tmp = _root;
+                            for (int i = 1; i < index; i++)
                             {
-                                L2Node tmp = _root;
-                                for (int i = 1; i < index; i++)
-                                {
-                                    tmp = tmp.Next;
-                                }
-                                L2Node b = tmp.Next;
-                                for (int i = 0; i < addArray.Length; i++)
-                                {
-                                    tmp.Next = new L2Node(addArray[i]);
-                                    tmp.Next.Previous = tmp;
-                                    tmp = tmp.Next;
-                                }
-                                tmp.Next = b;
-                                b.Previous = tmp;
-                                Length += addArray.Length;
+                                tmp = tmp.Next;
                             }
-                            else
+                            L2Node b = tmp.Next;
+                            for (int i = 0; i < addArray.Length; i++)
                             {
-                                L2Node tmp = end;
-                                for (int i = Length - 1; i > index; i--)
-                                {
-                                    tmp = tmp.Previous;
-                                }
-                                L2Node b = tmp.Previous;
-                                for (int i = addArray.Length - 1; i >= 0; i--)
-                                {
-                                    tmp.Previous = new L2Node(addArray[i]);
-                                    tmp.Previous.Next = tmp;
-                                    tmp = tmp.Previous;
-                                }
-                                tmp.Previous = b;
-                                b.Next = tmp;
-                                Length += addArray.Length;
+                                tmp.Next = new L2Node(addArray[i]);
+                                tmp.Next.Previous = tmp;
+                                tmp = tmp.Next;
                             }
+                            tmp.Next = b;
+                            b.Previous = tmp;
+                            Length += addArray.Length;
+                        }
+                        else
+                        {
+                            L2Node tmp = end;
+                            for (int i = Length - 1; i > index; i--)
+                            {
+                                tmp = tmp.Previous;
+                            }
+                            L2Node b = tmp.Previous;
+                            for (int i = addArray.Length - 1; i >= 0; i--)
+                            {
+                                tmp.Previous = new L2Node(addArray[i]);
+                                tmp.Previous.Next = tmp;
+                                tmp = tmp.Previous;
+                            }
+                            tmp.Previous = b;
+                            b.Next = tmp;
+                            Length += addArray.Length;
+                        }
                     }
                 }
             }
         }
-        public void Remove()  
+        public void Remove()
         {
-            if (Length==0)
+            if (Length == 0)
             {
                 throw new Exception("Nothing to remove");
             }
@@ -286,13 +286,13 @@ namespace DataStructures.DoubleLinkedList
                 }
             }
         }
-        public void Remove(int quantity)  
+        public void Remove(int quantity)
         {
             if (Length == 0)
             {
                 throw new Exception("Nothing to remove");
             }
-            if (quantity>Length)
+            if (quantity > Length)
             {
                 throw new Exception("Not enough items to remove");
             }
@@ -315,7 +315,7 @@ namespace DataStructures.DoubleLinkedList
                 }
             }
         }
-        public void RemoveFirst() 
+        public void RemoveFirst()
         {
             if (Length != 0)
             {
@@ -327,13 +327,13 @@ namespace DataStructures.DoubleLinkedList
                 throw new Exception("Nothing to remove");
             }
         }
-        public void RemoveFirst(int quantity)  
+        public void RemoveFirst(int quantity)
         {
-            if (Length==0)
+            if (Length == 0)
             {
                 throw new Exception("Not enough items to remove ");
             }
-            if (quantity>Length)
+            if (quantity > Length)
             {
                 throw new Exception("Nothing to remove");
             }
@@ -359,7 +359,7 @@ namespace DataStructures.DoubleLinkedList
                 }
             }
         }
-        public void RemoveByIndex(int index)  
+        public void RemoveByIndex(int index)
         {
             if (Length != 0 && index >= 0 && Length > index)
             {
@@ -406,7 +406,7 @@ namespace DataStructures.DoubleLinkedList
                 throw new IndexOutOfRangeException();
             }
         }
-        public void RemoveByIndex(int index, int quantity)  
+        public void RemoveByIndex(int index, int quantity)
         {
             if (Length != 0 && Length > index && index >= 0 && quantity >= 0)
             {
@@ -479,7 +479,7 @@ namespace DataStructures.DoubleLinkedList
                 {
                     throw new Exception("Nothing to remove");
                 }
-                if (quantity<=0)
+                if (quantity <= 0)
                 {
                     throw new Exception("Quantity should be more than zero");
                 }
@@ -496,11 +496,11 @@ namespace DataStructures.DoubleLinkedList
             {
                 throw new Exception("List is empty");
             }
-            
+
             for (int i = 0; i < Length; i++)
             {
                 if (tmp.Value == value)
-                { 
+                {
                     return i;
                 }
                 tmp = tmp.Next;
@@ -515,7 +515,7 @@ namespace DataStructures.DoubleLinkedList
                 throw new Exception("List is empty");
             }
 
-                L2Node tmp = _root;
+            L2Node tmp = _root;
             for (int i = 0; i < Length; i++)
             {
                 if (i == index)
@@ -526,6 +526,270 @@ namespace DataStructures.DoubleLinkedList
                 tmp = tmp.Next;
             }
             return -1;
+        }
+        public void Reverse()
+        {
+            if (Length == 0)
+            {
+                throw new Exception("List is empty");
+            }
+            else
+            {
+                L2Node prev = null, current = _root, next;
+                while (current != null)
+                {
+                    next = current.Next;
+                    current.Next = prev;
+                    current.Previous = next;
+                    prev = current;
+                    current = next;
+                }
+                _root = prev;
+            }
+        }
+        public int this[int index]
+        {
+            get
+            {
+                if (index > Length - 1 || index < 0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                int c;
+                if (index >= Length || Length == 0 || index < 0)
+                {
+                    c = 0;
+                }
+                else
+                {
+                    L2Node tmp = _root;
+                    for (int i = 0; i < index; i++)
+                    {
+                        tmp = tmp.Next;
+                    }
+                    c = tmp.Value;
+                }
+                return c;
+            }
+            set
+            {
+                if (index > Length - 1 || index < 0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                if (index >= 0 && index < Length && Length != 0)
+                {
+                    L2Node tmp = _root;
+                    for (int i = 0; i < index; i++)
+                    {
+                        tmp = tmp.Next;
+                    }
+                    tmp.Value = value;
+                }
+            }
+        }
+        public int FindMin()
+        {
+            int min = 0;
+            if (_root != null)
+            {
+                min = _root.Value;
+                L2Node tmp = _root;
+                while (tmp != null)
+                {
+                    if (min > tmp.Value)
+                    {
+                        min = tmp.Value;
+                    }
+                    tmp = tmp.Next;
+                }
+            }
+            return min;
+        }
+        public int FindIndexOfMin()
+        {
+            int a = 0;
+            if (_root != null)
+            {
+                int index = 0;
+                int min = _root.Value;
+                L2Node tmp = _root;
+                while (tmp != null)
+                {
+                    if (min > tmp.Value)
+                    {
+                        min = tmp.Value;
+                        a = index;
+                    }
+                    tmp = tmp.Next;
+                    index++;
+                }
+            }
+            else
+            {
+                a = -1;
+            }
+            return a;
+        }
+        public int FindMax()
+        {
+            int max = 0;
+            L2Node tmp = _root;
+            while (tmp != null)
+            {
+                if (max < tmp.Value)
+                {
+                    max = tmp.Value;
+                }
+                tmp = tmp.Next;
+            }
+            return max;
+        }
+        public int FindIndexOfMax()
+        {
+            int a = 0;
+            if (_root != null)
+            {
+                int index = 0;
+                int max = 0;
+                L2Node tmp = _root;
+                while (tmp != null)
+                {
+                    if (max < tmp.Value)
+                    {
+                        max = tmp.Value;
+                        a = index;
+                    }
+                    tmp = tmp.Next;
+                    index++;
+                }
+            }
+            else
+            {
+                a = -1;
+            }
+            return a;
+        }
+        public void SortInAscendingOrder()
+        {
+            if (Length != 0)
+            {
+                L2Node tmp = _root;
+                int l = 0;
+                while (tmp.Next != null)
+                {
+                    if (tmp.Value > tmp.Next.Value)
+                    {
+                        int a = tmp.Next.Value;
+                        tmp.Next.Value = tmp.Value;
+                        tmp.Value = a;
+                        l = 1;
+                    }
+                    tmp = tmp.Next;
+                }
+                if (l != 0)
+                {
+                    SortInAscendingOrder();
+                }
+            }
+        }
+        public void SortInDescendingOrder()
+        {
+            if (Length != 0)
+            {
+                L2Node tmp = _root;
+                while (tmp.Next != null)
+                {
+                    if (tmp.Value < tmp.Next.Value)
+                    {
+                        int a = tmp.Next.Value;
+                        tmp.Next.Value = tmp.Value;
+                        tmp.Value = a;
+                        SortInDescendingOrder();
+                    }
+                    else
+                    {
+                        tmp = tmp.Next;
+                    }
+                }
+            }
+        }
+        public void RemoveFirstValue(int value)
+        {
+            if (Length==0)
+            {
+                throw new Exception("List is empty");
+            }
+            if (Length != 0)
+            {
+                L2Node tmp = _root;
+                while (tmp.Next.Value != value && tmp.Next != null)
+                {
+                    tmp = tmp.Next;
+                    tmp.Next.Previous = tmp;
+                }
+                tmp.Next = tmp.Next.Next;
+                Length--;
+            }
+        }
+        public void RemoveAllValue(int value)
+        {
+            if (Length == 0)
+            {
+                throw new Exception("List is empty");
+            }
+            if (Length != 0)
+            {
+                while (_root.Value == value && Length > 1)
+                {
+                    _root = _root.Next;
+                    Length--;
+                }
+                if (Length == 1)
+                {
+                    if (_root.Value == value)
+                    {
+                        _root = null;
+                        end = null;
+                        Length = 0;
+                    }
+                    else
+                    {
+                        end.Previous = _root;
+                    }
+                }
+                else
+                {
+                    L2Node tmp = _root;
+                    int b = Length;
+                    L2Node c;
+                    for (int i = 1; i < b - 1; i++)
+                    {
+                        if (tmp.Next.Value == value)
+                        {
+                            c = tmp.Next.Next;
+                            tmp.Next = c;
+                            c.Previous = tmp;
+                            Length--;
+                        }
+                        else
+                        {
+                            tmp = tmp.Next;
+                        }
+                    }
+                    if (tmp.Next.Value == value)
+                    {
+                        tmp.Next = null;
+                        end = tmp;
+                        Length--;
+                    }
+                    else
+                    {
+                        tmp = tmp.Next;
+                        end = tmp.Next;
+                    }
+                }
+            }
         }
         public int[] ReturnArray()
         {
@@ -544,11 +808,10 @@ namespace DataStructures.DoubleLinkedList
             }
             return array;
         }
-        public int ReturnLength  
+        public int ReturnLength
         {
             get { return Length; }
         }
-
         public override bool Equals(object obj)
         {
             DoubleLinkedList doubleLinkedList = (DoubleLinkedList)obj;

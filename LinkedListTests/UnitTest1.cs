@@ -359,8 +359,6 @@ namespace LinkedListTests
         [TestCase(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 }, 17)]
         [TestCase(new int[] { 1, 2, 32, 13, 14, 15, 16, 17 }, 32)]
         [TestCase(new int[] { 11, 12, 13, 1401, 15, 16, 17 }, 1401)]
-
-
         public void FindMaxTest(int[] array,  int expected)
         {
             LinkedList linkedList = new LinkedList(array);
