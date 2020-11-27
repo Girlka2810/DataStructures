@@ -45,6 +45,19 @@ namespace DataStructures.DoubleLinkedList
                 Length = 0;
             }
         }
+        private L2Node EndOrHead(int index)
+        {
+            if (index > Length / 2)
+            {
+
+                return end;
+            }
+            else
+            {
+
+                return _root;
+            }
+        }
         public void Add(int value)
         {
             if (Length == 0)
@@ -555,21 +568,23 @@ namespace DataStructures.DoubleLinkedList
                 {
                     throw new IndexOutOfRangeException();
                 }
-                int c;
-                if (index >= Length || Length == 0 || index < 0)
+                L2Node tmp = EndOrHead(index);
+                if (tmp == _root)
                 {
-                    c = 0;
-                }
-                else
-                {
-                    L2Node tmp = _root;
                     for (int i = 0; i < index; i++)
                     {
                         tmp = tmp.Next;
                     }
-                    c = tmp.Value;
+                    return tmp.Value;
                 }
-                return c;
+                else
+                {
+                    for (int i = 0; i < Length - index - 1; i++)
+                    {
+                        tmp = tmp.Previous;
+                    }
+                    return tmp.Value;
+                }
             }
             set
             {
@@ -577,12 +592,20 @@ namespace DataStructures.DoubleLinkedList
                 {
                     throw new IndexOutOfRangeException();
                 }
-                if (index >= 0 && index < Length && Length != 0)
+                L2Node tmp = EndOrHead(index);
+                if (tmp == _root)
                 {
-                    L2Node tmp = _root;
                     for (int i = 0; i < index; i++)
                     {
                         tmp = tmp.Next;
+                    }
+                    tmp.Value = value;
+                }
+                else
+                {
+                    for (int i = 0; i < Length - index - 1; i++)
+                    {
+                        tmp = tmp.Previous;
                     }
                     tmp.Value = value;
                 }
